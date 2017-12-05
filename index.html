@@ -76,6 +76,29 @@
       }
     </style>
     <script src="Chart.min.js"></script>
+
+    <script>
+    function random(m_w, m_z) {
+      m_z = 36969 * (m_z & 65535) + (m_z >> 16);
+      m_w = 18000 * (m_w & 65535) + (m_w >> 16);
+        return (m_z << 16) + m_w;
+    }
+    year = 2060
+    function updateChart() {
+      chart = leftChart;//document.getElementById("leftChart").getContext("2d");
+      label = year
+      year += 10
+      data1 = Math.floor(Math.random() * 2001);
+      data2 = Math.floor(Math.random() * 2001);
+      chart.data.labels.push(label);
+      chart.data.datasets[0].data.push(data1+data2)
+      chart.data.datasets[1].data.push(data1)
+      chart.data.datasets[2].data.push(data2)
+      //chart.data.datasets.forEach((dataset) => {
+      //    dataset.data.push(data);
+      //});
+      chart.update();
+    }
 </script>
   </head>
   <body>
@@ -96,6 +119,7 @@
     <div class="charts-container">
       <div class="chart-container">
         <canvas id="leftChart" width="400px" height="200px"></canvas>
+        <button onclick="updateChart()">Update</button>
       </div>
       <div class="chart-container">
         <canvas id="rightChart" width="400px" height="200px"></canvas>
