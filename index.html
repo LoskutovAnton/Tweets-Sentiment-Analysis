@@ -2,128 +2,38 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <style>
-      .search-container
-      {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        width: 100%;
-        height: 50px;
-        margin: 10px;
-      }
-
-      .search
-      {
-        font-size: 2rem;
-      }
-
-      .charts-container
-      {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin: 40px;
-      }
-
-      .chart-container
-      {
-        position: relative;
-        margin: auto;
-        width: 40%;
-      }
-
-      .flex-container
-      {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-
-      .flex-container > div
-      {
-        width: 30%;
-        margin: 15px;
-        font-size: 14px;
-      }
-
-      .positive {}
-      .neutral {}
-      .negative {}
-
-      .positive > .twit-container
-      {
-        background-color: rgba(75, 192, 192, 0.2);
-        border: 1px solid rgba(75, 192, 192, 0.5);
-      }
-
-      .neutral > .twit-container
-      {
-        background-color: rgba(255, 206, 86, 0.2);
-        border: 1px solid rgba(255, 206, 86, 0.5);
-      }
-
-      .negative > .twit-container
-      {
-        background-color: rgba(255, 99, 132, 0.2);
-        border: 1px solid rgba(255, 99, 132, 0.5);
-      }
-
-      .twit-container
-      {
-        padding: 10px;
-        border: 1px solid rgba(0,0,0,0.3);
-      }
-    </style>
-    <script src="Chart.min.js"></script>
-
-    <script>
-    function random(m_w, m_z) {
-      m_z = 36969 * (m_z & 65535) + (m_z >> 16);
-      m_w = 18000 * (m_w & 65535) + (m_w >> 16);
-        return (m_z << 16) + m_w;
-    }
-    year = 2060
-    function updateChart() {
-      chart = leftChart;//document.getElementById("leftChart").getContext("2d");
-      label = year
-      year += 10
-      data1 = Math.floor(Math.random() * 2001);
-      data2 = Math.floor(Math.random() * 2001);
-      chart.data.labels.push(label);
-      chart.data.datasets[0].data.push(data1+data2)
-      chart.data.datasets[1].data.push(data1)
-      chart.data.datasets[2].data.push(data2)
-      //chart.data.datasets.forEach((dataset) => {
-      //    dataset.data.push(data);
-      //});
-      chart.update();
-    }
-</script>
+    <link rel='stylesheet' href='css/style.css'/>
+    <link rel='stylesheet' href='css/nprogress.css'/>
   </head>
   <body>
     <div class="search-container">
       <div>
-        Логотип
+        <img src="pictures/logo.jpg" height="80px" style="border-radius: 30px;">
       </div>
-      <form>
-        <div class="search">
-          <input type="search" id="mySearch" name="search" placeholder="Поиск тут...">
-          <button>Поиск</button>
-        </div>
-      </form>
+      <div class="search">
+        <input type="text" id="mySearch" name="search" oninput="searchUpdate()" placeholder="Поиск тут...">
+        <button>Поиск</button>
+      </div>
       <div>
-        Ссылка на github
+        <a href="https://github.com/LoskutovAnton/ML-Project" target="_blank"><img src="pictures/github_logo.png" class="github-logo" height="40px"></a>
       </div>
     </div>
     <div class="charts-container">
       <div class="chart-container">
         <canvas id="leftChart" width="400px" height="200px"></canvas>
-        <button onclick="updateChart()">Update</button>
       </div>
       <div class="chart-container">
         <canvas id="rightChart" width="400px" height="200px"></canvas>
       </div>
+    </div>
+    <div class="flex-container" style="justify-content: space-around;">
+      <button onclick="updateLeftChart()">Update left chart</button>
+      <button onclick="updateRightChart()">Update right chart</button>
+      <button onclick="updateTwitContainer()">Update twit container</button>
+      <button onclick="updateData()">Update All</button>
+      <button onclick="NProgress.start()">Loader start</button>
+      <button onclick="NProgress.inc()">Loader inc</button>
+      <button onclick="NProgress.done()">Loader finish</button>
     </div>
     <div class="flex-container">
       <div class="positive">
@@ -164,60 +74,11 @@
       </div>
     </div>
 
-    <script>
-var leftCtx = document.getElementById("leftChart").getContext('2d');
-var leftChart = new Chart(leftCtx, {
-  type: 'bar',
-  data: {
-    labels: ["1900", "1950", "1999", "2050"],
-    datasets: [{
-        label: "Общее",
-        type: "line",
-        borderColor: "rgba(0, 0, 0, 0.4)",
-        data: [541,768,1458,3212],
-        fill: false
-      }, {
-        label: "Положительные",
-        type: "bar",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 0.5)",
-        data: [408,547,675,734],
-      }, {
-        label: "Негативные",
-        type: "bar",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 0.5)",
-        data: [133,221,783,2478]
-      }
-    ]
-  }
-});
-
-var rightCtx = document.getElementById("rightChart").getContext('2d');
-var rightChart = new Chart(rightCtx, {
-    type: 'pie',
-    data : {
-    datasets: [{
-        data: [10, 20, 30],
-        backgroundColor: [
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(255, 99, 132, 0.2)'
-        ],
-        borderColor: [
-            'rgba(75, 192, 192, 0.5)',
-            'rgba(255, 206, 86, 0.5)',
-            'rgba(255, 99, 132, 0.5)'
-        ]
-    }],
-
-    labels: [
-        'Положительные',
-        'Нейтральные',
-        'Негативные'
-    ]
-}
-});
-</script>
+    <script src="js/Chart.min.js"></script>
+    <script src='js/chart_side.js'></script>
+    <script src='js/nprogress.js'></script>
+    <script src='js/data_side.js'></script>
+    <script src='js/frontend_side.js'></script>
+    <script src='js/request_side.js'></script>
   </body>
 </html>
