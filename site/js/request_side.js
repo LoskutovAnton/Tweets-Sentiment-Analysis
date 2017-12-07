@@ -56,7 +56,7 @@ function SendRequest(method, path, args, handler)
     }
   }
   Request.open(method, path, true);
-  if (r_method.toLowerCase() == "post")
+  if (method.toLowerCase() == "post")
   {
     Request.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8");
     Request.send(args);
@@ -67,8 +67,9 @@ function StartConnection(url, text)
 {
   var Handler = function(Request)
   {
-    let json = eval("(" + Request.responseText + ")");
+    //let json = eval("(" + Request.responseText + ")");
+    let json = Request.responseText;
     updateData(json);
   }
-  SendRequest("POST", "url://"+url, "text="+text, Handler);
+  SendRequest("POST", "url://"+ encodeURIComponent(url), "text="+encodeURIComponent(text), Handler);
 }
