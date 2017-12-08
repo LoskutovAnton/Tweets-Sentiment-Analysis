@@ -1,4 +1,15 @@
-#mySearch {
+:root
+{
+  --positive-color: rgba(75, 192, 192, 0.2);
+  --positive-border-color: rgba(75, 192, 192, 0.5);
+  --neutral-color: rgba(255, 206, 86, 0.2);
+  --neutral-border-color: rgba(255, 206, 86, 0.5);
+  --negative-color: rgba(255, 99, 132, 0.2);
+  --negative-border-color: rgba(255, 99, 132, 0.5);
+}
+
+#mySearch
+{
   border: 1px solid #cccccc;
   border-radius: 3px;
   background: #ffffff;
@@ -71,24 +82,24 @@
 
 .positive > .twit-container
 {
-  background-color: rgba(75, 192, 192, 0.2);
-  border: 1px solid rgba(75, 192, 192, 0.5);
+  background-color: var(--positive-color);
+  border: 1px solid var(--positive-border-color);
 }
 
 .neutral > .twit-container
 {
-  background-color: rgba(255, 206, 86, 0.2);
-  border: 1px solid rgba(255, 206, 86, 0.5);
+  background-color: var(--neutral-color);
+  border: 1px solid var(--neutral-border-color);
 }
 
 .negative > .twit-container
 {
-  background-color: rgba(255, 99, 132, 0.2);
-  border: 1px solid rgba(255, 99, 132, 0.5);
+  background-color: var(--negative-color);
+  border: 1px solid var(--negative-border-color);
 }
 
 .twit-container
 {
   padding: 10px;
-  border: 1px solid rgba(0,0,0,0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
