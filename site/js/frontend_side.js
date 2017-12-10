@@ -1,6 +1,21 @@
-function searchUpdate() {
-  var search = document.getElementById("mySearch");
-  search.style.background = "rgba(245, 236, 86, 0.5)";
+function searchUpdate(color)
+{
+  if (color == undefined)
+  {
+    const random = Math.random();
+    if (random < 0.3) { search_DOM_element.style.background = positive_color; }
+    else if (random < 0.6) { search_DOM_element.style.background = neutral_color; }
+    else { search_DOM_element.style.background = negative_color; }
+  } else
+  {
+    search_DOM_element.style.background = color;
+  }
+}
+
+function searchForceUpdate()
+{
+  last_search_text = search_DOM_element.value;
+  StartConnection(last_search_text);
 }
 
 function updateRightChart(dataset)
