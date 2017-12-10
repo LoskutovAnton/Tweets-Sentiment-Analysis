@@ -58,6 +58,8 @@ function updateData(json)
         if (dataset[i][0].text == search_DOM_element.value)
         {
           searchUpdate(color_array[i]);
+          NProgress.done();
+          return;
         }
       }
     }
