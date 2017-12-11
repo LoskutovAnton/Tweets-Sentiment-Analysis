@@ -63,13 +63,20 @@ function SendRequest(method, path, args, handler)
   }
 }
 
-function StartConnection(url, text)
+function StartConnection(text)
 {
+  console.log("request started");
+  if (request_url == undefined)
+  {
+    searchUpdate();
+    return;
+  }
   var Handler = function(Request)
   {
     //let json = eval("(" + Request.responseText + ")");
     let json = Request.responseText;
     updateData(json);
   }
-  SendRequest("POST", "url://"+ encodeURIComponent(url), "text="+encodeURIComponent(text), Handler);
+  NProgress.start();
+  SendRequest("POST", "url://"+ encodeURIComponent(request_url), "text="+encodeURIComponent(text), Handler);
 }

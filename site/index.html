@@ -10,10 +10,10 @@
       <div>
         <img src="pictures/logo.jpg" height="80px" style="border-radius: 30px;">
       </div>
-      <div class="search">
-        <input type="text" id="mySearch" name="search" oninput="searchUpdate()" placeholder="Поиск тут...">
-        <button>Поиск</button>
-      </div>
+      <form class="search" onsubmit="searchUpdate(); return false;">
+        <input type="text" id="mySearch" name="search" onsubmit="searchForceUpdate()" placeholder="Поиск тут...">
+        <input type="submit" style="display: none">
+      </form>
       <div>
         <a href="https://github.com/LoskutovAnton/ML-Project" target="_blank"><img src="pictures/github_logo.png" class="github-logo" height="40px"></a>
       </div>
@@ -30,7 +30,8 @@
       <button onclick="updateLeftChart()">Update left chart</button>
       <button onclick="updateRightChart()">Update right chart</button>
       <button onclick="updateTwitContainer()">Update twit container</button>
-      <button onclick="updateData()">Update All</button>
+      <button onclick="updateData()">Update All(user, hashtag)</button>
+      <button onclick="updateDataForOneTweet()">Update All(tweet is test)</button>
       <button onclick="NProgress.start()">Loader start</button>
       <button onclick="NProgress.inc()">Loader inc</button>
       <button onclick="NProgress.done()">Loader finish</button>
@@ -79,7 +80,7 @@
     <script src="js/Chart.min.js"></script>
     <script src='js/chart_side.js'></script>
     <script src='js/data_side.js'></script>
-    <script src='js/frontend_side.js'></script>
     <script src='js/request_side.js'></script>
+    <script src='js/frontend_side.js'></script>
   </body>
 </html>
