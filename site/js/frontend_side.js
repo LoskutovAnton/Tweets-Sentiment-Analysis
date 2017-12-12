@@ -1,3 +1,8 @@
+function searchResetColor()
+{
+  search_DOM_element.style.background = white_color;
+}
+
 function searchUpdate(color)
 {
   if (color == undefined)

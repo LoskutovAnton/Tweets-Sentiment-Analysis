@@ -1,3 +1,4 @@
+const white_color = "rgba(0, 0, 0, 0)"
 const positive_color = "rgba(75, 192, 192, 0.2)";
 const positive_border_color = "rgba(75, 192, 192, 0.5)";
 const neutral_color = "rgba(255, 206, 86, 0.2)";
@@ -27,7 +28,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (last_search_text != search_DOM_element.value)
     {
       last_search_text = search_DOM_element.value;
-      StartConnection(last_search_text);
+      if (last_search_text == "")
+      {
+        searchResetColor();
+      } else
+      {
+        StartConnection(last_search_text);
+      }
     }
   }, request_timeout);
 });
