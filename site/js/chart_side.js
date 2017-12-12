@@ -12,14 +12,14 @@ var left_chart = new Chart(left_ctx, {
       }, {
         label: "Положительные",
         type: "bar",
-        backgroundColor: positive_color,
-        borderColor: positive_border_color,
+        backgroundColor: chart_positive_color,
+        borderColor: chart_positive_border_color,
         data: [408,547,675,734],
       }, {
         label: "Негативные",
         type: "bar",
-        backgroundColor: negative_color,
-        borderColor: negative_border_color,
+        backgroundColor: chart_negative_color,
+        borderColor: chart_negative_border_color,
         data: [133,221,783,2478]
       }
     ]
@@ -33,14 +33,14 @@ var right_chart = new Chart(right_ctx, {
     datasets: [{
         data: [10, 20, 30],
         backgroundColor: [
-            positive_color,
-            neutral_color,
-            negative_color
+            chart_positive_color,
+            chart_neutral_color,
+            chart_negative_color
         ],
         borderColor: [
-            positive_border_color,
-            neutral_border_color,
-            negative_border_color
+            chart_positive_border_color,
+            chart_neutral_border_color,
+            chart_negative_border_color
         ]
     }],
 
