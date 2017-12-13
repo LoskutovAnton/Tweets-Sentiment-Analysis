@@ -1,3 +1,18 @@
+function restoreMainPage()
+{
+  clearInterval(animateChartsTimer);
+  var leftAnimateChart = document.getElementById("leftAnimateChart");
+  var searchHint = document.getElementById("searchHint");
+  var leftChart = document.getElementById("leftChart");
+  var rightChart = document.getElementById("rightChart");
+  var tweetsContainer = document.getElementById("tweetsContainer");
+  leftAnimateChart.style.display = 'none';
+  searchHint.style.display = 'none';
+  leftChart.style.display = 'block';
+  rightChart.style.display = 'block';
+  tweetsContainer.style.display = 'flex';
+}
+
 function searchResetColor()
 {
   search_DOM_element.style.background = white_color;
@@ -44,12 +59,12 @@ function updateLeftChart(dataset)
     dataset = createData();
   }
   var chart = left_chart;
-  var unique_twit_times = new Set();
+  var unique_tweet_times = new Set();
   for (let data of dataset)
   {
     for (let elem of data)
     {
-      unique_twit_times.add(elem.time);
+      unique_tweet_times.add(elem.time);
     }
   }
 
@@ -59,17 +74,17 @@ function updateLeftChart(dataset)
     data_times[i] = [];
   }
 
-  var unique_twit_arr = Array.from(unique_twit_times.values());
-  unique_twit_arr.sort()
+  var unique_tweet_arr = Array.from(unique_tweet_times.values());
+  unique_tweet_arr.sort()
 
-  for (var j = 0; j < unique_twit_arr.length; j++)
+  for (var j = 0; j < unique_tweet_arr.length; j++)
   {
     for (var i = 0; i < 3; i++)
     {
       data_times[i][j] = 0;
       for (let elem of dataset[i])
       {
-        if (elem.time == unique_twit_arr[j])
+        if (elem.time == unique_tweet_arr[j])
         {
           data_times[i][j]++;
         }
@@ -77,7 +92,7 @@ function updateLeftChart(dataset)
     }
   }
   var label = [];
-  for (let time of unique_twit_times)
+  for (let time of unique_tweet_times)
   {
     date = new Date(time);
     label.push(date.toISOString().slice(0,10));
@@ -86,7 +101,7 @@ function updateLeftChart(dataset)
   chart.data.datasets[0].data = [];
   chart.data.datasets[1].data = [];
   chart.data.datasets[2].data = [];
-  for (var j = 0; j < unique_twit_times.size; j++)
+  for (var j = 0; j < unique_tweet_times.size; j++)
   {
     chart.data.datasets[0].data.push(data_times[0][j]+data_times[1][j]+data_times[2][j]);
     chart.data.datasets[1].data.push(data_times[0][j]);
@@ -95,7 +110,7 @@ function updateLeftChart(dataset)
   chart.update();
 }
 
-function updateTwitContainer(dataset)
+function updateTweetContainer(dataset)
 {
   //html_dataset - массив DOM-элементов твитов, отображаемых снизу страницы
   if (dataset == undefined)
@@ -119,7 +134,7 @@ function updateTwitContainer(dataset)
     {
       var div_node = document.createElement('div');
       var text = document.createTextNode(data.text);
-      div_node.classList += "twit-container";
+      div_node.classList += "tweet-container";
       div_node.appendChild(text);
       html_data.appendChild(div_node);
     }

@@ -6,6 +6,20 @@
   --neutral-border-color: rgba(255, 206, 86, 0.5);
   --negative-color: rgba(255, 99, 132, 0.2);
   --negative-border-color: rgba(255, 99, 132, 0.5);
+  --search-hint-color: rgba(0, 0, 0, 0.5);
+}
+
+#searchHint
+{
+  font-size: 20px;
+  color: var(--search-hint-color);
+  padding-left: 20%;
+}
+
+#searchProgress
+{
+  width: 90%;
+  height: 3px;
 }
 
 #mySearch
@@ -32,7 +46,6 @@
 {
   width: 50%;
   padding-top: 20px;
-  font-size: 2rem;
 }
 
 .github-logo
@@ -80,25 +93,25 @@
 .neutral {}
 .negative {}
 
-.positive > .twit-container
+.positive > .tweet-container
 {
   background-color: var(--positive-color);
   border: 1px solid var(--positive-border-color);
 }
 
-.neutral > .twit-container
+.neutral > .tweet-container
 {
   background-color: var(--neutral-color);
   border: 1px solid var(--neutral-border-color);
 }
 
-.negative > .twit-container
+.negative > .tweet-container
 {
   background-color: var(--negative-color);
   border: 1px solid var(--negative-border-color);
 }
 
-.twit-container
+.tweet-container
 {
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);

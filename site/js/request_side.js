@@ -1,3 +1,4 @@
+// Создает запрос в зависимости от браузера
 function CreateRequest()
 {
   var Request = false;
@@ -23,7 +24,10 @@ function CreateRequest()
   return Request;
 }
 
-function SendRequest(method, path, args, handler)
+// Отправляет запрос с аргументами (args) и обработчиком(handler)
+// Request.onreadystatechange не играет роли, просто для красоты
+// Request.onreadystatechange, важен только последний этап с обработчиком
+function SendRequest(args, handler)
 {
   var Request = CreateRequest();
   if (!Request)
@@ -55,14 +59,13 @@ function SendRequest(method, path, args, handler)
       }
     }
   }
-  Request.open(method, path, true);
-  if (method.toLowerCase() == "post")
-  {
-    Request.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8");
-    Request.send(args);
-  }
+  Request.open("POST", encodeURIComponent(request_url), true);
+  Request.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8");
+  Request.send(args);
 }
 
+//Создает соединение и отправляет text
+//По факту описывает обработчик и вызывает функцию SendRequest()
 function StartConnection(text)
 {
   console.log("request started");
@@ -75,8 +78,10 @@ function StartConnection(text)
   {
     //let json = eval("(" + Request.responseText + ")");
     let json = Request.responseText;
+    console.log("request ended");
+    console.log(json);
     updateData(json);
   }
   NProgress.start();
-  SendRequest("POST", "url://"+ encodeURIComponent(request_url), "text="+encodeURIComponent(text), Handler);
+  SendRequest("text="+encodeURIComponent(text), Handler);
 }

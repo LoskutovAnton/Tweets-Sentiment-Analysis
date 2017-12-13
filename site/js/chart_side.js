@@ -1,3 +1,85 @@
+var DATA_COUNT = 32;
+var MIN_XY = -100;
+var MAX_XY = 100;
+var BUBBLE_SIZE = 24;
+
+function colorize(opaque, context) {
+  color = Math.floor(Math.random() * 3);
+  return chart_color_array[color];
+}
+
+function generateData() {
+  var data = [];
+
+  for (let i = 0; i < DATA_COUNT; ++i) {
+    data.push({
+      x: Math.random() * (MAX_XY - MIN_XY - 3*BUBBLE_SIZE) + MIN_XY + BUBBLE_SIZE,
+      y: Math.random() * (MAX_XY - MIN_XY - 3*BUBBLE_SIZE) + MIN_XY + BUBBLE_SIZE,
+      v: Math.random() * 600
+    });
+  }
+
+  return data;
+}
+
+var data = {
+  datasets: [{
+    data: generateData()
+  }, {
+    data: generateData()
+  }]
+};
+
+var options = {
+  aspectRatio: 0.5,
+  legend: false,
+  tooltips: false,
+
+  scales: {
+    yAxes: [{
+      gridLines: {
+        drawBorder: false,
+        display: false,
+      },
+      display: false,
+    }],
+    xAxes: [{
+      gridLines: {
+        drawBorder: false,
+        display: false,
+      },
+      display: false,
+    }],
+  },
+
+  elements: {
+    point: {
+      backgroundColor: colorize.bind(null, false),
+
+      radius: function(context) {
+        var value = context.dataset.data[context.dataIndex];
+        var size = context.chart.width;
+        var base = Math.abs(value.v) / 1000;
+        return (size / BUBBLE_SIZE) * base;
+      }
+    }
+  }
+};
+
+var left_animate_ctx = document.getElementById("leftAnimateChart").getContext('2d');
+var leftAnimateChart = new Chart(left_animate_ctx, {
+  type: 'bubble',
+  data: data,
+  options: options
+});
+
+function randomize() {
+  leftAnimateChart.data.datasets.forEach(function(dataset) {
+    dataset.data = generateData()
+  });
+  leftAnimateChart.update();
+}
+
 var left_ctx = document.getElementById("leftChart").getContext('2d');
 var left_chart = new Chart(left_ctx, {
   type: 'bar',

@@ -11,6 +11,7 @@
         <img src="pictures/logo.jpg" height="80px" style="border-radius: 30px;">
       </div>
       <form class="search" onsubmit="searchUpdate(); return false;">
+        <div id="searchProgress"></div>
         <input type="text" id="mySearch" name="search" onsubmit="searchForceUpdate()" placeholder="Поиск тут...">
         <input type="submit" style="display: none">
       </form>
@@ -20,10 +21,18 @@
     </div>
     <div class="charts-container">
       <div class="chart-container">
-        <canvas id="leftChart" width="400px" height="200px"></canvas>
+        <canvas id="leftAnimateChart" width="400px" height="200px"></canvas>
+        <canvas id="leftChart" width="400px" height="200px" style="display: none"></canvas>
       </div>
       <div class="chart-container">
-        <canvas id="rightChart" width="400px" height="200px"></canvas>
+        <div id="searchHint">
+          <p>Вы можете узнать тональность одного твита, всех твитов пользователя(@user) или всех твитов по хэштегу(#hashtag).</p>
+          <p>Для этого воспользуйтесь поиском выше</p>
+          <p>PS. Для теста "Update All(user, hashtag)"</p>
+          <p>PSS. Позависайте на шариках</p>
+          <p>PSSS. И придумайте текст сюда =)</p>
+        </div>
+        <canvas id="rightChart" width="400px" height="200px" style="display: none"></canvas>
       </div>
     </div>
     <div class="flex-container" style="justify-content: space-around;">
@@ -36,40 +45,40 @@
       <button onclick="NProgress.inc()">Loader inc</button>
       <button onclick="NProgress.done()">Loader finish</button>
     </div>
-    <div class="flex-container">
+    <div class="flex-container" id="tweetsContainer" style="display: none">
       <div class="positive">
-        <div class="twit-container">
+        <div class="tweet-container">
           Досмотрел 2-ой сезон "Как избежать наказания за убийство". И вот уже 2 сезона этот сериал радует меня своими мутками, запутанными раскладами и хитросплетениями сюжета. Очень такое нравится.
         </div>
-        <div class="twit-container">
+        <div class="tweet-container">
           Самая обсуждаемая новость: Трейлер фильма «Мстители: Война бесконечности»: Эпичная битва начинается
         </div>
-        <div class="twit-container">
+        <div class="tweet-container">
           Дочь Путина популяризирует акробатические танцы.<br/>
           Навальный – танцы живота.<br/>
           Здорово
         </div>
       </div>
       <div class="neutral">
-        <div class="twit-container">
+        <div class="tweet-container">
           Внезапно для себя обнаружил что перешёл на Firefox на всех устройствах, включая iPhone. Оставил в качестве резерва хром-совместимый Я.Бро и все.
         </div>
-        <div class="twit-container">
+        <div class="tweet-container">
           Создатели «Секретных материалов» готовят официальную игру по сериалу. Она должна заполнить пустоты между предыдущими сезонами
         </div>
-        <div class="twit-container">
+        <div class="tweet-container">
           – Бабуль, ну там правда в телеграме легко, ты разберёшься.<br/>
           – Ох, не знаю, внученька, мне 84 года. Может я по-старинке Вайбером, а?
         </div>
       </div>
       <div class="negative">
-        <div class="twit-container">
+        <div class="tweet-container">
           Старбакс с начала декабря оформили под Рождество, и все побежали за ёлками. Скорее бы Старбакс вам сказал с девятого этажа прыгнуть.
         </div>
-        <div class="twit-container">
+        <div class="tweet-container">
           Братья Андреасян берутся за экранизацию антиутопии Евгения Замятина «Мы». Выпустить фильм обещают в 2019 году
         </div>
-        <div class="twit-container">
+        <div class="tweet-container">
           Техническое обслуживание на этой неделе
         </div>
       </div>
