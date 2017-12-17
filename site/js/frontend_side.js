@@ -77,29 +77,56 @@ function updateLeftChart(dataset)
     data_times[i] = [];
   }
 
+  var len_tweets = unique_twit_arr.length;
+  var batch_size = len_tweets/4;
+  if (batch_size == 0)
+  {
+    batch_size = 1;
+  }
+  var batches = [data_times[batch_size-1], data_times[2*batch_size-1], data_times[3*batch_size-1], data_times[len_tweets-1] ];
+
+
   var unique_tweet_arr = Array.from(unique_tweet_times.values());
   unique_tweet_arr.sort()
 
-  for (var j = 0; j < unique_tweet_arr.length; j++)
+  for (var i = 0; i < 3; i++)
   {
-    for (var i = 0; i < 3; i++)
+    for (var j = 0; j < 4; j++)
     {
       data_times[i][j] = 0;
-      for (let elem of dataset[i])
-      {
-        if (elem.time == unique_tweet_arr[j])
-        {
-          data_times[i][j]++;
-        }
-      }
     }
   }
-  var label = [];
-  for (let time of unique_tweet_times)
+
+  for (var i = 0; i < 3; i++)
   {
-    date = new Date(time);
-    label.push(date.toISOString().slice(0,10));
+    for (let elem of dataset[i])
+    {
+      var j = 0;
+      for (var j = 0; elem.time < batches[j]; j++) {}
+      data_times[i][j]++;
+    }
   }
+
+  //for (var j = 0; j < 4; j++)
+  //{
+  //  for (var i = 0; i < 3; i++)
+  //  {
+  //    data_times[i][j] = 0;
+  //    for (let elem of dataset[i])
+  //    {
+  //      if (elem.time == unique_twit_arr[i])
+  //      {
+  //        data_times[i][0]++;
+  //      }
+  //    }
+  //  }
+  //}
+  var label = [];
+  //for (let time of unique_tweet_times)
+  //{
+  //  date = new Date(time);
+  //  label.push(date.toISOString().slice(0,10));
+  //}
   chart.data.labels = label;
   chart.data.datasets[0].data = [];
   chart.data.datasets[1].data = [];
