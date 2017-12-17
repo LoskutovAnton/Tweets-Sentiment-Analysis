@@ -1,24 +1,3 @@
-function getJSON()
-{
-  var time = new Date("February 6 2017").getTime();
-  var time2 = new Date("August 23 2016").getTime();
-  var time3 = new Date("June 15 2015").getTime();
-  var text = '{"tweets": [ [' +
-'{ "text":"Досмотрел 2-ой сезон Как избежать наказания за убийство.", "time":'+  time.toString() +' },' +
-'{ "text":"Мстители: Война бесконечности: Эпичная битва начинается", "time":'+  time.toString() +' },' +
-'{ "text":"Дочь Путина популяризирует акробатические танцы. Навальный – танцы живота. Здорово", "time":'+  time2.toString() +' }]'+
-                        ',[' +
-'{ "text":"Внезапно для себя обнаружил что перешёл на Firefox на всех устройствах, включая iPhone.", "time":'+  time.toString() +' },' +
-'{ "text":"Она должна заполнить пустоты между предыдущими сезонами", "time":'+  time2.toString() +' },' +
-'{ "text":"Бабуль, ну там правда в телеграме легко, ты разберёшься. Ох, не знаю, внученька, мне 84 года", "time":'+  time2.toString() +' }]' +
-                        ',[' +
-'{ "text":"Досмотрел 2-ой сезон Как избежать наказания за убийство.", "time":'+  time.toString() +' },' +
-'{ "text":"Мстители: Война бесконечности: Эпичная битва начинается", "time":'+  time.toString() +'},' +
-'{ "text":"Дочь Путина популяризирует акробатические танцы. Навальный – танцы живота. Здорово", "time":'+  time3.toString() +' }]' +
-                          '], "type": 2 }';
-  return text;
-}
-
 function parseJSON(json)
 {
   return JSON.parse(json);
@@ -28,17 +7,13 @@ function createData(json)
 {
   if (json == undefined)
   {
-    json = getJSON();
+    //json = getJSON();
+    return;
   }
   var obj = parseJSON(json);
   var tweets = obj['tweets'];
   request_type = obj['type'];
   return new Array(tweets[0], tweets[1], tweets[2]);
-}
-
-function updateDataForOneTweet()
-{
-  updateData('{"tweets": [[{"text":"test", "time":101123}], [], []],"type":0}');
 }
 
 function updateData(json)

@@ -79,7 +79,7 @@ function StartConnection(text)
     //let json = eval("(" + Request.responseText + ")");
     let json = Request.responseText;
     console.log("request ended");
-    console.log(json);
+    //console.log(json);
     updateData(json);
   }
   NProgress.start();

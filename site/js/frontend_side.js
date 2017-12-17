@@ -42,7 +42,8 @@ function updateRightChart(dataset)
 {
   if (dataset == undefined)
   {
-    dataset = createData();
+    //dataset = createData();
+    return;
   }
   chart = right_chart;
   chart.data.datasets[0].data = [dataset[0].length, dataset[1].length, dataset[2].length];
@@ -56,7 +57,8 @@ function updateLeftChart(dataset)
   //data_times - массив массивов времени каждого твита для каждой тональности
   if (dataset == undefined)
   {
-    dataset = createData();
+    //dataset = createData();
+    return;
   }
   var chart = left_chart;
   var unique_tweet_times = new Set();
