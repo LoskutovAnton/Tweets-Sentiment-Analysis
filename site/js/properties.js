@@ -38,5 +38,17 @@ document.addEventListener("DOMContentLoaded", function(event)
 {
   search_DOM_element = document.getElementById("mySearch")
 
+  setInterval(function()
+  {
+    if (last_search_text != search_DOM_element.value)
+    {
+      last_search_text = search_DOM_element.value;
+      if (last_search_text == "")
+      {
+        searchResetColor();
+      }
+    }
+  }, request_timeout);
+
   animateChartsTimer = setInterval(function(){ randomize() }, 1000);
 });
