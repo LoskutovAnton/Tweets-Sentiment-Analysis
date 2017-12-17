@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+
+    <link rel='stylesheet' href="{% static 'twittersemantic/css/style.css' %}"/>
+    <link rel='stylesheet' href="{% static 'twittersemantic/css/nprogress.css' %}"/>
+  </head>
+  <body>
+    <div class="search-container">
+      <div>
+        <img src="{% static 'twittersemantic/pictures/logo.jpg' %}"  height="80px" style="border-radius: 30px;">
+      </div>
+
+
+      <form class="search" onsubmit="searchUpdate(); Connect(); return false;">
+        <div id="searchProgress"></div>
+        <input type="text" id="mySearch" name="search" placeholder="Поиск тут...">
+        <input type="submit" style="display: none">
+      </form>
+
+
+      <div>
+        <a href="https://github.com/LoskutovAnton/ML-Project" target="_blank"><img src="{% static 'twittersemantic/pictures/github_logo.png' %}" class="github-logo" height="40px"></a>
+      </div>
+    </div>
+    <div class="charts-container">
+      <div class="chart-container">
+        <canvas id="leftAnimateChart" width="400px" height="200px"></canvas>
+        <canvas id="leftChart" width="400px" height="220px" style="display: none"></canvas>
+      </div>
+      <div class="chart-container">
+        <div id="searchHint">
+          <p>Вы можете узнать тональность одного твита, всех твитов пользователя(@user) или всех твитов по хэштегу(#hashtag).</p>
+          <p>Для этого воспользуйтесь поиском выше</p>
+          <p>PS. Для теста "Update All(user, hashtag)"</p>
+          <p>PSS. Позависайте на шариках</p>
+          <p>PSSS. И придумайте текст сюда =)</p>
+        </div>
+        <canvas id="rightChart" width="400px" height="200px" style="display: none"></canvas>
+      </div>
+    </div>
+
+    <div class="flex-container" id="tweetsContainer" style="display: none">
+      <div class="positive">
+        <div class="tweet-container">
+          Досмотрел 2-ой сезон "Как избежать наказания за убийство". И вот уже 2 сезона этот сериал радует меня своими мутками, запутанными раскладами и хитросплетениями сюжета. Очень такое нравится.
+        </div>
+        <div class="tweet-container">
+          Самая обсуждаемая новость: Трейлер фильма «Мстители: Война бесконечности»: Эпичная битва начинается
+        </div>
+        <div class="tweet-container">
+          Дочь Путина популяризирует акробатические танцы.<br/>
+          Навальный – танцы живота.<br/>
+          Здорово
+        </div>
+      </div>
+      <div class="neutral">
+        <div class="tweet-container">
+          Внезапно для себя обнаружил что перешёл на Firefox на всех устройствах, включая iPhone. Оставил в качестве резерва хром-совместимый Я.Бро и все.
+        </div>
+        <div class="tweet-container">
+          Создатели «Секретных материалов» готовят официальную игру по сериалу. Она должна заполнить пустоты между предыдущими сезонами
+        </div>
+        <div class="tweet-container">
+          – Бабуль, ну там правда в телеграме легко, ты разберёшься.<br/>
+          – Ох, не знаю, внученька, мне 84 года. Может я по-старинке Вайбером, а?
+        </div>
+      </div>
+      <div class="negative">
+        <div class="tweet-container">
+          Старбакс с начала декабря оформили под Рождество, и все побежали за ёлками. Скорее бы Старбакс вам сказал с девятого этажа прыгнуть.
+        </div>
+        <div class="tweet-container">
+          Братья Андреасян берутся за экранизацию антиутопии Евгения Замятина «Мы». Выпустить фильм обещают в 2019 году
+        </div>
+        <div class="tweet-container">
+          Техническое обслуживание на этой неделе
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'twittersemantic/js/Chart.min.js' %}"></script>
+
+    <script src="{% static 'twittersemantic/js/nprogress.js' %}"></script>
+    <script src="{% static 'twittersemantic/js/properties.js' %}"></script>
+    <script src="{% static 'twittersemantic/js/Chart.min.js' %}"></script>
+    <script src="{% static 'twittersemantic/js/chart_side.js' %}"></script>
+    <script src="{% static 'twittersemantic/js/data_side.js' %}"></script>
+    <script src="{% static 'twittersemantic/js/request_side.js' %}"></script>
+    <script src="{% static 'twittersemantic/js/frontend_side.js' %}"></script>
+
+  </body>
+</html>
