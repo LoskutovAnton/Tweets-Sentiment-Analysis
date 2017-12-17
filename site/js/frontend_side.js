@@ -22,10 +22,11 @@ function searchUpdate(color)
 {
   if (color == undefined)
   {
-    const random = Math.random();
-    if (random < 0.3) { search_DOM_element.style.background = positive_color; }
-    else if (random < 0.6) { search_DOM_element.style.background = neutral_color; }
-    else { search_DOM_element.style.background = negative_color; }
+    return;
+    //const random = Math.random();
+    //if (random < 0.3) { search_DOM_element.style.background = positive_color; }
+    //else if (random < 0.6) { search_DOM_element.style.background = neutral_color; }
+    //else { search_DOM_element.style.background = negative_color; }
   } else
   {
     search_DOM_element.style.background = color;
