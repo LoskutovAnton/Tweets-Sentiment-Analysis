@@ -15,6 +15,9 @@
     </div>
     <canvas id="Chart1" width="900px" height="550px" style="height: auto; width: auto;"></canvas>
     <canvas id="Chart2" width="900px" height="550px" style="height: auto; width: auto;"></canvas>
+    <canvas id="Chart3" width="900px" height="550px" style="height: auto; width: auto;"></canvas>
+    <canvas id="Chart4" width="900px" height="550px" style="height: auto; width: auto;"></canvas>
+    <canvas id="Chart5" width="900px" height="550px" style="height: auto; width: auto;"></canvas>
 
     <script src="js/Chart.min.js"></script>
     <script>
@@ -131,6 +134,7 @@
                 legend: {
                   labels: {
                     fontSize: 25,
+                    fontStyle: 'bold'
                   }
                 },
                 responsive: true,
@@ -141,17 +145,27 @@
                 scales: {
                     xAxes: [{
                         display: true,
+                        ticks: {
+                          fontSize: 20,
+                          fontStyle: 'bold'
+                        },
                         scaleLabel: {
                             display: true,
                             fontSize: 25,
+                            fontStyle: 'bold',
                             labelString: 'Ngram range'
                         }
                     }],
                     yAxes: [{
                         display: true,
+                        ticks: {
+                          fontSize: 20,
+                          fontStyle: 'bold'
+                        },
                         scaleLabel: {
                             display: true,
                             fontSize: 25,
+                            fontStyle: 'bold',
                             labelString: 'F-score'
                         }
                     }]
@@ -229,6 +243,7 @@
           legend: {
             labels: {
               fontSize: 25,
+              fontStyle: 'bold'
             }
           },
           responsive: true,
@@ -239,17 +254,300 @@
           scales: {
               xAxes: [{
                   display: true,
+                  ticks: {
+                    fontSize: 20,
+                    fontStyle: 'bold'
+                  },
                   scaleLabel: {
                       display: true,
                       fontSize: 25,
+                      fontStyle: 'bold',
                       labelString: 'Number of iteration'
                   }
               }],
               yAxes: [{
                   display: true,
+                  ticks: {
+                    fontSize: 20,
+                    fontStyle: 'bold'
+                  },
                   scaleLabel: {
                       display: true,
                       fontSize: 25,
+                      fontStyle: 'bold',
+                      labelString: 'F-score'
+                  }
+              }]
+          }
+        }
+    };
+    </script>
+    <script>
+    var config3 = {
+        type: 'bar',
+        data: {
+          labels: ["Stemming", "Stemming no single", "Stemming no single no short", "Lemmatisation", "Lemmatisation no single", "Lemmatisation no single no short"],
+          datasets: [{
+              label: "Logistic Regression",
+              backgroundColor: "rgba(54, 162, 235, 1)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              data: [0.758898, 0.758839, 0.759732, 0.758374, 0.758389, 0.762671]
+            }, {
+              label: "SVM TF-IDF",
+              backgroundColor: "rgba(255, 205, 86, 1)",
+              borderColor: "rgba(255, 205, 86, 1)",
+              data: [0.746675, 0.746675, 0.752475, 0.745639, 0.745639, 0.755446]
+            }
+          ]
+        },
+        options: {
+          legend: {
+            labels: {
+              fontSize: 25,
+              fontStyle: 'bold'
+            }
+          },
+          responsive: true,
+          title:{
+              display:true,
+              text:'Chart #3'
+          },
+          scales: {
+              xAxes: [{
+                  display: true,
+                  ticks: {
+                    fontSize: 20,
+                    fontStyle: 'bold'
+                  },
+                  scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      fontStyle: 'bold',
+                      labelString: 'Preprocessing'
+                  },
+              }],
+              yAxes: [{
+                  display: true,
+                  ticks: {
+                    fontSize: 20,
+                    suggestedMin: 0.7,
+                    fontStyle: 'bold'
+                  },
+                  scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      fontStyle: 'bold',
+                      labelString: 'F-score'
+                  }
+              }]
+          }
+        }
+    };
+    </script>
+    <script>
+    var config4 = {
+        type: 'line',
+        data: {
+            labels: ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"],
+            datasets: [{
+                label: "libnear",
+                backgroundColor: "rgba(255, 99, 132, 1)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                data: [
+                  0.75395071,
+                  0.75812955,
+                  0.75936411,
+                  0.75998732,
+                  0.7601942,
+                  0.76017991,
+                  0.75984058,
+                  0.7596976,
+                  0.75938195,
+                  0.75933873
+                ],
+                fill: false,
+            },
+          {
+              label: "saga",
+              backgroundColor: "rgba(255, 159, 64, 1)",
+              borderColor: "rgba(255, 159, 64, 1)",
+              data: [
+                0.75252223,
+                0.75577625,
+                0.7568014,
+                0.75710718,
+                0.75758088,
+                0.75783976,
+                0.75791663,
+                0.75786608,
+                0.75780524,
+                0.7579475
+              ],
+              fill: false,
+          },
+          {
+              label: "newton_cg",
+              backgroundColor: "rgba(255, 205, 86, 1)",
+              borderColor: "rgba(255, 205, 86, 1)",
+              data: [
+                0.75395926,
+                0.75812509,
+                0.75936422,
+                0.75996968,
+                0.76020312,
+                0.76018427,
+                0.75984941,
+                0.75970207,
+                0.75939077,
+                0.75933429
+              ],
+              fill: false,
+          },
+          {
+              label: "lbfgs",
+              backgroundColor: "rgba(75, 192, 192, 1)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              data: [
+                0.75403789,
+                0.75806091,
+                0.75927657,
+                0.75972512,
+                0.76017432,
+                0.75980869,
+                0.75988277,
+                0.75979612,
+                0.75943107,
+                0.75945631
+              ],
+              fill: false,
+          },
+          {
+              label: "sag",
+              backgroundColor: "rgba(54, 162, 235, 1)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              data: [
+                0.75373361,
+                0.75749933,
+                0.75864705,
+                0.75910619,
+                0.75928984,
+                0.75944615,
+                0.75953928,
+                0.7596553,
+                0.75965622,
+                0.75973474
+              ],
+              fill: false,
+          }]
+        },
+        options: {
+          legend: {
+            labels: {
+              fontSize: 25,
+              fontStyle: 'bold'
+            }
+          },
+          responsive: true,
+          title:{
+              display:true,
+              text:'Chart #1'
+          },
+          scales: {
+              xAxes: [{
+                  display: true,
+                  ticks: {
+                    fontSize: 20,
+                    fontStyle: 'bold'
+                  },
+                  scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      fontStyle: 'bold',
+                      labelString: 'Regularization coefficient'
+                  }
+              }],
+              yAxes: [{
+                  display: true,
+                  ticks: {
+                    fontSize: 20,
+                    fontStyle: 'bold'
+                  },
+                  scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      fontStyle: 'bold',
+                      labelString: 'F-score'
+                  }
+              }]
+          }
+        }
+    };
+    </script>
+    <script>
+    var config5 = {
+        type: 'bar',
+        data: {
+          labels: ["Our model", "Классификация эмоциональной окраски сообщений в социальных сетях", "АНАЛИЗ ТОНАЛЬНОСТИ СООБЩЕНИЙ СОЦИАЛЬНОЙ СЕТИ TWITTER", "Sentiment Analysis of Twitter Data"],
+          datasets: [{
+              label: "Наша модель",
+              backgroundColor: "rgba(54, 162, 235, 1)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              data: [76.2, 0, 0, 0]
+            }, {
+              label: "Классификация эмоциональной окраски сообщений в социальных сетях",
+              backgroundColor: "rgba(255, 205, 86, 1)",
+              borderColor: "rgba(255, 205, 86, 1)",
+              data: [0, 72.3, 0, 0]
+            }, {
+              label: "АНАЛИЗ ТОНАЛЬНОСТИ СООБЩЕНИЙ СОЦИАЛЬНОЙ СЕТИ TWITTER",
+              backgroundColor: "rgba(255, 205, 86, 1)",
+              borderColor: "rgba(255, 205, 86, 1)",
+              data: [0, 0, 76.2, 0]
+            }, {
+              label: "Sentiment Analysis of Twitter Data",
+              backgroundColor: "rgba(255, 205, 86, 1)",
+              borderColor: "rgba(255, 205, 86, 1)",
+              data: [0, 72.3, 0, 75.86]
+            }
+          ]
+        },
+        options: {
+          legend: {
+            labels: {
+              fontSize: 25,
+              fontStyle: 'bold'
+            }
+          },
+          responsive: true,
+          title:{
+              display:true,
+              text:'Chart #3'
+          },
+          scales: {
+              xAxes: [{
+                  display: true,
+                  ticks: {
+                    fontSize: 20,
+                    fontStyle: 'bold'
+                  },
+                  scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      fontStyle: 'bold',
+                      labelString: 'Preprocessing'
+                  },
+              }],
+              yAxes: [{
+                  display: true,
+                  ticks: {
+                    fontSize: 20,
+                    suggestedMin: 0.7,
+                    fontStyle: 'bold'
+                  },
+                  scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      fontStyle: 'bold',
                       labelString: 'F-score'
                   }
               }]
@@ -263,6 +561,12 @@
       window.myLine = new Chart(ctx, config);
       var ctx2 = document.getElementById("Chart2").getContext("2d");
       window.myLine = new Chart(ctx2, config2);
+      var ctx3 = document.getElementById("Chart3").getContext("2d");
+      window.myLine = new Chart(ctx3, config3);
+      var ctx4 = document.getElementById("Chart4").getContext("2d");
+      window.myLine = new Chart(ctx4, config4);
+      var ctx5 = document.getElementById("Chart5").getContext("2d");
+      window.myLine = new Chart(ctx5, config5);
     };
     </script>
   </body>

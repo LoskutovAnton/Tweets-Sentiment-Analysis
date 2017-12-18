@@ -77,61 +77,64 @@ function updateLeftChart(dataset)
     data_times[i] = [];
   }
 
-  var len_tweets = unique_twit_arr.length;
+  var unique_tweet_arr = Array.from(unique_tweet_times.values());
+  unique_tweet_arr.sort()
+
+  var len_tweets = unique_tweet_arr.length;
   var batch_size = len_tweets/4;
   if (batch_size == 0)
   {
     batch_size = 1;
   }
-  var batches = [data_times[batch_size-1], data_times[2*batch_size-1], data_times[3*batch_size-1], data_times[len_tweets-1] ];
+  var batches = [unique_tweet_arr[batch_size-1], unique_tweet_arr[2*batch_size-1], unique_tweet_arr[3*batch_size-1], unique_tweet_arr[len_tweets-1] ];
 
+  //for (var i = 0; i < 3; i++)
+  //{
+  //  for (var j = 0; j < 4; j++)
+  //  {
+  //    data_times[i][j] = 0;
+  //  }
+  //}
 
-  var unique_tweet_arr = Array.from(unique_tweet_times.values());
-  unique_tweet_arr.sort()
-
-  for (var i = 0; i < 3; i++)
-  {
-    for (var j = 0; j < 4; j++)
-    {
-      data_times[i][j] = 0;
-    }
-  }
-
-  for (var i = 0; i < 3; i++)
-  {
-    for (let elem of dataset[i])
-    {
-      var j = 0;
-      for (var j = 0; elem.time < batches[j]; j++) {}
-      data_times[i][j]++;
-    }
-  }
+  //for (var i = 0; i < 3; i++)
+  //{
+  //  for (let elem of dataset[i])
+  //  {
+  //    var j = 0;
+  //    for (;elem.time < batches[j]; j++) {}
+  //    data_times[i][j]++;
+  //  }
+  //}
 
   //for (var j = 0; j < 4; j++)
   //{
-  //  for (var i = 0; i < 3; i++)
-  //  {
-  //    data_times[i][j] = 0;
-  //    for (let elem of dataset[i])
-  //    {
-  //      if (elem.time == unique_twit_arr[i])
-  //      {
-  //        data_times[i][0]++;
-  //      }
-  //    }
-  //  }
+    for (var i = 0; i < 3; i++)
+    {
+      data_times[i][j] = 0;
+      for (let elem of dataset[i])
+      {
+        for (var j = 0; j < 4; j++)
+        {
+          if (elem.time < batches[j])
+          {
+            data_times[i][j]++;
+            break;
+          }
+        }
+      }
+    }
   //}
-  var label = [];
+  //var label = [];
   //for (let time of unique_tweet_times)
   //{
   //  date = new Date(time);
   //  label.push(date.toISOString().slice(0,10));
   //}
-  chart.data.labels = label;
+  //chart.data.labels = label;
   chart.data.datasets[0].data = [];
   chart.data.datasets[1].data = [];
   chart.data.datasets[2].data = [];
-  for (var j = 0; j < unique_tweet_times.size; j++)
+  for (var j = 0; j < 4; j++)
   {
     chart.data.datasets[0].data.push(data_times[0][j]+data_times[1][j]+data_times[2][j]);
     chart.data.datasets[1].data.push(data_times[0][j]);
