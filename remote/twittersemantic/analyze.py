@@ -110,15 +110,22 @@ def analyse_tweets(tweets, TYPE):
     NUM_POS = sum([1 for pred in tweet_preds if pred[0][1] > POS_BOUND])
     NUM_NEG = sum([1 for pred in tweet_preds if pred[0][0] > NEG_BOUND])
 
-    if NUM_NEG == 0:
+    if TYPE == 0:
+        POS_BOUND = 0.6
+        NEG_BOUND = 0.6
+
+    if NUM_NEG == 0 and TYPE != 0:
         NEG_BOUND -= 0.2
         print("Negative Bound Decreased")
-    if NUM_POS == 0:
+
+    if NUM_POS == 0 and TYPE != 0:
         POS_BOUND -= 0.2
         print("Positive Bound Decreased")
 
     print("NUM POS: %d" %(NUM_POS))
     print("NUM NEG: %d" %(NUM_NEG))
+
+    print(tweet_preds)
 
     for pred, text, date, prepared_text in tweet_preds:
         if pred[1] > POS_BOUND:

@@ -1,7 +1,7 @@
 var DATA_COUNT = 32;
 var MIN_XY = -100;
 var MAX_XY = 100;
-var BUBBLE_SIZE = 24;
+var BUBBLE_SIZE = 15;
 
 function colorize(opaque, context) {
   color = Math.floor(Math.random() * 3);
@@ -70,7 +70,8 @@ var left_animate_ctx = document.getElementById("leftAnimateChart").getContext('2
 var leftAnimateChart = new Chart(left_animate_ctx, {
   type: 'bubble',
   data: data,
-  options: options
+  options: options,
+
 });
 
 function randomize() {
