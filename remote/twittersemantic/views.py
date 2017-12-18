@@ -59,10 +59,10 @@ def get_hashtag_recent_tweets(hashtag, count=100):
     MIN_SYMBOLS_NUM = 20
 
     try:
-        tweets = tweepy.Cursor(api.search, q=hashtag[1:], lang='ru').items(count)
+        tweets = tweepy.Cursor(api.search, q=hashtag[1:], lang='ru', full_text=True, tweet_mode="extended").items(count)
     except Exception:
         print("Getting Cursor error")
-    tweets = [(tweet.text, tweet.created_at) for tweet in tweets]
+    tweets = [(tweet.full_text, tweet.created_at) for tweet in tweets]
 
     return tweets
 
@@ -73,7 +73,7 @@ def get_user_recent_tweets(username, count):
 
     try:
         user = api.get_user(username)
-        tweets = [(tweet.text, tweet.created_at) for tweet in user.timeline(count=count)]
+        tweets = [(tweet.full_text, tweet.created_at) for tweet in user.timeline(count=count, full_text=True, tweet_mode="extended")]
     except Exception:
         print("Getting timeline error")
     # tweets = [prepare_text(tweet) for tweet in tweets]
