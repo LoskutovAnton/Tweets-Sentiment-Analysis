@@ -20,6 +20,3 @@
 * site - frontend
 * server - backend
 * remote - исходники для развертывания web-service на удаленном хосте
-
-## Доступ к сервису
-[Twiton](http://35.195.147.187:5000/twittersemantic/search/)
